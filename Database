@@ -11,3 +11,22 @@ create table customer(
 insert into customer (customer_id, email_id, name, date_of_birth, customer_type) values (1, 'martin@infy.com', 'martin', sysdate()- interval 9136 day, 'GOLD');
 commit;
 select * from customer;
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+create table transaction(
+   transaction_id int auto_increment,
+   transaction_date date,
+   transaction_amount float,
+   constraint ps_transaction_id_pk primary key (transaction_id)
+);
+insert into transaction values (1, sysdate()- interval 9136 day, 1000);
+insert into transaction values (2, sysdate()- interval 8136 day, 1569);
+insert into transaction values (3, sysdate()- interval 8736 day, 4567);
+insert into transaction values (4, sysdate()- interval 9036 day, 2345);
+insert into transaction values (5, sysdate()- interval 8636 day, 6745);
