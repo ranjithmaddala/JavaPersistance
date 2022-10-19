@@ -1,0 +1,87 @@
+Program : Input -> process -> Output
+
+Algorithm : 
+	- It is a step by step process
+	- To represent the algorithm we use 2ways
+		-> Pseudo Code
+		-> Flow Chart
+		
+		Pseudo Code : is a algorithm which is written in human understandable form.
+		Flow Chart  : is a graphical representation of a program/Algorithm.
+		
+	Symbols in flowchart :
+	---------------------
+		Parallelogram 		-		Input/Output
+		Arrow Head			-		Flow of direction
+		Rectangle			-		Process
+		Oval				- 		Beginning/Ending
+		Rhombus/ Diamond	-		Decision
+	
+	Java(Source) Code -> Byte(Compile) Code -> Binary Code
+	
+- JDK is a combination of Dev Tools and JRE
+	
+		Helloworld.java  -- Source Code
+			  ||         --Compiler 
+			  vv		
+		Helloworld.class -- Byte Code
+			  || 		 
+			  vv
+		  Class Loader -> ByteCodeVerifier -> Interpreter , JIT -> RunTime
+		  
+		JIT -> Compiles Reusable ByteCode to MachineCode
+		
+Platform independent ->  If a program written on a particular platform can run on other platforms without any recompilation
+
+Operator Precedence 
+```````````````````
+P -> Parenthesis 
+P -> Postfix/++,--
+U -> Prefix/++,--,~,!
+M -> Multiplicative
+A -> Additive
+S -> Shift
+R -> Relational
+E -> Equality
+L -> Logical &&
+L -> Logical ||
+T -> Ternary
+A -> Assignment
+
+2 types of type conversion: 
+```````````````````````````
+->Implicit/Widening 
+->Explicit/Narrowing 
+
+-> Float is not allowed in the switch case expression 
+
+-> Class names in PascalCase
+-> Method/Variable names in camelCase
+
+-> Even though a resource in a program is unreachable or not in use,
+ the memory used by that resource is not deallocated. This is called Memory leak and is undesirable.
+ When an object does not have any reference, it becomes eligible for garbage collection.
+ 
+ garbage Collection takes place:
+   - When the object is initialized with null
+   - When the object has new reference, then the old reference is eligible to Garbage Collection.
+   
+   * You cannot be certain at what point of time garbage collection will occur
+   * An object will be eligible for garbage collection after the execution of the method is over
+
+
+																			Encapsulation : 
+																		   `````````````````
+getters and setters 
+
+setters syntax : public void setVariableName(Datatype variableName){
+					this.variableName = variableName; //setting the value which is passed
+				 }
+getters syntax : public return_type getVariableName(Datatype variableName){
+                    return this.variableName; 
+				 }
+				 
+Public    : Accessible from any other class
+Private   : Accessible only inside its own class
+Protected : Accessible inside the same package and to the sub-classes in different packages
+Default   : Accessible inside the same package.
