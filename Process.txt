@@ -1,0 +1,241 @@
+1. Entity
+2. DTO
+3. Logging Aspect
+4. Exception
+
+------Run Appliaction------
+
+5.Respository
+
+------Run Appliaction------
+
+6. Service
+7. Test
+8. API
+
+
+==========================================================================================================================
+
+1. Entity:- 
+
+
+How to write the Entity class -- [Entity - QP - Table srcipt](Follow this process)
+
+1. Instance Variables -- as per the class diagram.
+   
+   1.1 Annotations are must for the Entity class
+
+       @Entity -- It is used for declaring the class as Entity.
+       @Id -- It is used for the declaring the primary key in the table.
+       @Table -- It is used for the declaring the table name as per the table script.
+       @Column --  It is used when the DBMS colums names and Entity instance variables are different naming structure 
+                   then this annotation is used.
+
+       @GeneratedValue(strategy=GenerationType.IDENTITY) -- It is used for auto generating the Id. When the Id is auto generated we need not to give the 
+                                                            Id while adding the another customer details.
+                                                           
+     
+
+
+    1.2 Mapping 
+
+       @OneToOne mapping -- @OneToOne(cascade = CascadeType.ALL) -- The cascade attribute specifies
+                            operations performed on the owner entity that must be transferred or
+                            cascaded to the target entity.
+
+                         -- @JoinColumn(name = "address_id", unique = true) -- This annotation is used to
+                            specify the foreign key column that joins the owner and target entity. 
+                            The unique = true assures that unique values will be stored in the join column.
+       
+       @ManyToOne mapping -- @ManyToOne(cascade = CascadeType.ALL) -- The cascade attribute specifies
+                             operations performed on the owner entity that must be transferred or
+                             cascaded to the target entity.
+                             By default, none of the operations will be cascaded. 
+                             It takes values of type CascadeType enumeration.
+                          
+                          -- @JoinColumn(name = "address_id") -- This annotation is used to
+                             specify the foreign key column that joins the owner and target entity.
+                             foregin key can have duplicate values. 
+
+    
+    1.3 Extra things 
+
+        -- You need to develop the hascode() and equals() methods in entity. If toString() method is asked in QP you need to need the develop this method.
+        
+   
+    1.4 Import 
+       
+        -- Import from javax.persistence
+
+
+==========================================================================================================================
+
+2.DTO:- 
+
+How to write the DTO -- [DTO - QP - Validation.Properties file](Follow this process and check is everytind )
+
+1. In DTO they will give the instance variables, getter and setter methods and etc.
+
+2. You need to add the Annoations for checking and validating the details as per the QP.
+
+   2.1 Validating details
+
+         -- @NotNull - Checks that the annotated property is not null.
+
+         -- @Null	   - Checks that the annotated property is null.
+
+         -- @Min	   - Checks that the annotated property has value greater than or equal to given value.
+
+         -- @Max	   - Checks that the annotated property has value less than or equal to given value.
+
+         -- @Email   - Checks that the annotated property is a valid email id.
+
+         -- @NotEmpty- Checks that the annotated property is not null or empty for given collection.
+
+         -- @NotBlank- Checks that the annotated property is not null or white space.
+
+         -- @Pattern - Checks that the annotated property follows the provided regex attribute.
+
+         -- @Future  - Checks that a date value is in the future.
+
+         -- @Size    - Checks that size of annotated property is between its min and max attributes. It can be applied to String, 
+                       Collection, Map and Array properties.
+       
+
+
+         -- @PastOrPresent   - Checks that a date value is in the past including the present date.
+
+         -- @FutureOrPresent - Checks that a date value is in the future including the present date.
+         
+
+Example for DTO :-
+                    {
+                         @Notnull(message = "Please provide valid Id")                        
+                         private Integer customerId;
+	                   @Email(message = "Please provide valid email address")
+                         @NotNull(message = "Please provide email address")
+	                   private String emailId;
+	                   @NotNull(message = "Please provide customer name")
+                         @Pattern(regexp="[A-Za-z]+( [A-Za-z]+)*", message="Name should contain only alphabets and space")
+	                   private String name;
+                         @PastOrPresent(message = "Date of birth should be past or present date")
+	                   private LocalDate dateOfBirth;
+
+         
+==========================================================================================================================       
+
+
+3. Logging Aspect
+
+How to write logging aspect 
+
+ -- CLASS LEVEL Annotations = @Aspect, @Component
+
+		-- these annotations are import from aspectj, springframework.stereotype respectively
+ 
+ -- @AfterThrowing(pointcut = "execution(* packagename.classname.*(..))", throwing = "exception")
+ 
+ -- @AfterThrowing(pointcut = "execution(* com.infy.infyinterns.service.ProjectAllocationServiceImpl.*(..))", thrwoing = "exception")
+
+//code
+----Logger.error(exception.getmessage(),exception);
+
+
+==========================================================================================================================
+
+
+4.Exception
+
+How to write the Exception
+
+      -- You need to add the Annoations 
+         
+         - Annotations 
+		= CLASS LEVEL @RestControllerAdvice
+		= @Autowired
+		= METHOD LEVEL @ExceptionHandler(...class)
+                                                       .. Write the exceptionname as per the method
+
+
+==========================================================================================================================
+
+
+5. Repository 
+
+How to write the Repository class
+
+
+1. Respository is extends the crudrespository -- It will perform the Create,Read,Update,Delete operations.
+
+      -- extends CrudRepository<entity, PKdataType>
+
+2. If they asked to develop the findby() method you need to write the method in this Repository.
+
+     -- Import only from JAVA.UTIL ONLY
+
+
+==========================================================================================================================
+
+
+6. ServiceIMPL
+
+How to implement the Service
+
+-- In service you need to implement the business logic based on the QP.
+
+1. Frist you need add the annotations based on the QP.
+
+ = CLASS LEVEL
+			- @Service(value = "..") 
+			 .. class name without impl in camel casing, After running the program from main method it will directly comes to the service and excuting the program.
+
+			- @Transactional -- it is used to for transactions.
+		      - @Autowired the repos --  -- It is used for requesting the container that the object is enabled or not.
+
+	- import only from org.springframework
+  
+
+2. You need to develop the methods for get, add, update, delete 
+
+   -- For add method you need to convert the entity into dto
+   -- For get/read method you need to convert the dto to entity
+      -- optional is used to get the details for 1 customer
+      -- List is used for get the details for multiple customer, because to store all customer details.
+   -- Update method and delete method are same but there is small differece in that. Write as per the QP.
+
+	
+==========================================================================================================================
+
+
+7.Test 
+
+How to write the Test case methods
+
+- Annotations 
+		= CLASS LEVEL  @SpringBootTest
+		= @Mock the repository
+		= @InjectMocks the service
+		= @Test for the methods
+
+	- import only from org.springframework, org.mockito, org.mockito, org.junit.jupiter respectively
+
+
+==========================================================================================================================
+
+
+8. API 
+
+How write the API class
+
+- Annotations 
+		= @RestController
+		= @Validated	
+		= @RequestMapping("..")	
+			
+                 .. in this you need write the base uri
+
+     -- for add - @Postmapping(value = "..")
+     -- for get/read - @Getmapping(value = "..")
+     -- for update - @Putmapping(value = "..")
+     -- for delete - @Deletemapping(value = "..") 
+
