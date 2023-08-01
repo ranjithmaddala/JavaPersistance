@@ -1,0 +1,21 @@
+def count_duplicates(code):
+    return len(set(code)) - len(code)
+
+def group_spare_parts(N, codes):
+    grouped_parts = {}
+    for code in codes:
+        duplicates = count_duplicates(code)
+        if duplicates not in grouped_parts:
+            grouped_parts[duplicates] = []
+        grouped_parts[duplicates].append(code)
+    
+    sorted_groups = sorted(grouped_parts.values(), key=lambda group: group[0])
+    return sorted_groups
+
+# Input
+N = int(input())
+codes = input().split()
+
+# Output
+result = group_spare_parts(N, codes)
+print(result)
